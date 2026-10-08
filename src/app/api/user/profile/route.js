@@ -21,7 +21,7 @@ export async function GET() {
 
     await dbConnect();
 
-    const user = await User.findById(session.user.id).select('-password');
+    const user = await User.findById(session.user.id).select('+password');
 
     if (!user) {
       return NextResponse.json(
@@ -45,6 +45,8 @@ export async function GET() {
         emailVerified: user.emailVerified,
         createdAt: user.createdAt,
         lastActive: user.lastActive,
+        provider: user.provider || 'credentials',
+        hasPassword: !!user.password,
       },
     });
   } catch (err) {

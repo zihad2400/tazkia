@@ -28,6 +28,14 @@ export const translations = {
 
     // ═══ Announcement ═══
     announcement: '🌙 Ramadan Mubarak — Explore the Ramadan Guide',
+    ramadanMubarak: 'Ramadan Mubarak',
+    exploreRamadanGuide: 'Explore the Ramadan Guide',
+    day: 'Day',
+    inDays: 'in',
+    days: 'days',
+    prepare: 'Prepare',
+    viewCalendar: 'View Calendar',
+    daysAway: 'days away',
 
     // ═══ Home ═══
     assalamuAlaikum: 'Assalamu Alaikum',
@@ -375,6 +383,14 @@ export const translations = {
     openMenu: 'মেনু খুলুন',
 
     announcement: '🌙 রমজান মুবারক — রমজান গাইড দেখুন',
+    ramadanMubarak: 'রমজান মুবারক',
+    exploreRamadanGuide: 'রমজান গাইড দেখুন',
+    day: 'দিন',
+    inDays: '',
+    days: 'দিন পরে',
+    prepare: 'প্রস্তুতি নিন',
+    viewCalendar: 'ক্যালেন্ডার দেখুন',
+    daysAway: 'দিন বাকি',
 
     assalamuAlaikum: 'আসসালামু আলাইকুম',
     tagline: 'কুরআনের সাথে যুক্ত হোন। সুন্নাহ অনুযায়ী জীবন গড়ুন। ঈমানে বেড়ে উঠুন।',
@@ -717,6 +733,14 @@ export const translations = {
     openMenu: 'فتح القائمة',
 
     announcement: '🌙 رمضان مبارك — استكشف دليل رمضان',
+    ramadanMubarak: 'رمضان مبارك',
+    exploreRamadanGuide: 'استكشف دليل رمضان',
+    day: 'اليوم',
+    inDays: 'خلال',
+    days: 'أيام',
+    prepare: 'استعد',
+    viewCalendar: 'عرض التقويم',
+    daysAway: 'يوماً',
 
     assalamuAlaikum: 'السلام عليكم',
     tagline: 'تواصل مع القرآن. عش بالسنة. انم بالإيمان.',

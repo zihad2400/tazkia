@@ -16,6 +16,7 @@ import { useLanguage } from '@/components/providers/LanguageProvider';
 import { useTheme } from '@/components/providers/ThemeProvider';
 import toast from 'react-hot-toast';
 import NotificationSoundPicker from '@/components/ui/NotificationSoundPicker';
+import DeleteAccountModal from '@/components/ui/DeleteAccountModal';
 
 const SECTIONS = [
   { id: 'account', label: 'Account', bn: 'একাউন্ট', ar: 'الحساب', icon: FaUser },
@@ -104,6 +105,8 @@ export default function SettingsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [requiresPassword, setRequiresPassword] = useState(false);
   const [prefs, setPrefs] = useState({
     prayerNotifications: true,
     quranNotifications: true,
@@ -609,8 +612,19 @@ export default function SettingsPage() {
                       {t.deleteAccountDesc}
                     </p>
                     <button
-                      onClick={() => toast.error('এই ফিচারটি এখনো রেডি নয়')}
-                      className="mt-3 px-4 py-2 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg transition-all active:scale-95"
+                      onClick={async () => {
+                        // Fetch user profile to check if password required
+                        try {
+                          const res = await fetch('/api/user/profile');
+                          if (res.ok) {
+                            const data = await res.json();
+                            // If user has no password (Google), no password needed
+                            setRequiresPassword(data.user?.provider !== 'google' && data.user?.hasPassword !== false);
+                          }
+                        } catch (e) {}
+                        setDeleteModalOpen(true);
+                      }}
+                      className="mt-3 px-4 py-2 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg transition-all active:scale-95 shadow-md"
                     >
                       {t.deleteAccount}
                     </button>
@@ -640,6 +654,13 @@ export default function SettingsPage() {
           </Link>
         </div>
       </div>
+
+      {/* ═══ Delete Account Modal ═══ */}
+      <DeleteAccountModal
+        open={deleteModalOpen}
+        onClose={() => setDeleteModalOpen(false)}
+        requiresPassword={requiresPassword}
+      />
     </div>
   );
 }

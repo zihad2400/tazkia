@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaVolumeUp, FaVolumeMute, FaPlay } from 'react-icons/fa';
+import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import {
   playIslamicBell, playPing, playAdhanStyle, getSoundPrefs, setSoundPrefs,
 } from '@/lib/utils/notificationSound';
@@ -87,9 +87,6 @@ export default function NotificationSoundPicker() {
                   }`}
                 >
                   <span className="text-xs font-semibold truncate">{label(s)}</span>
-                  {s.id !== 'none' && (
-                    <FaPlay size={9} className="shrink-0 opacity-60" />
-                  )}
                 </button>
               ))}
             </div>

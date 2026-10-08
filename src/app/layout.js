@@ -3,6 +3,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 import { LanguageProvider } from '@/components/providers/LanguageProvider';
+import DynamicTitle from '@/components/providers/DynamicTitle';
 import TazkiaToaster from '@/components/ui/Toast';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -11,8 +12,8 @@ export const metadata = {
   metadataBase: new URL('https://tazkia.app'),
 
   title: {
-    default: 'TAZKIA — Connect with the Quran. Live with Sunnah. Grow with Faith.',
-    template: '%s | TAZKIA',
+    default: 'تزكية',
+    template: '%s | تزكية',
   },
 
   description:
@@ -40,21 +41,10 @@ export const metadata = {
   applicationName: 'TAZKIA',
 
   icons: {
-    icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon.ico', sizes: 'any' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { rel: 'mask-icon', url: '/icon.svg', color: '#0F5132' },
-    ],
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
   },
-
-  manifest: '/site.webmanifest',
 
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#0F5132' },
@@ -66,12 +56,12 @@ export const metadata = {
     locale: 'bn_BD',
     alternateLocale: ['en_US'],
     url: 'https://tazkia.app',
-    title: 'TAZKIA — Islamic Platform',
+    title: 'تزكية',
     description: 'Connect with the Quran. Live with Sunnah. Grow with Faith.',
     siteName: 'TAZKIA',
     images: [
       {
-        url: '/apple-touch-icon.png',
+        url: '/icon.svg',
         width: 180,
         height: 180,
         alt: 'TAZKIA — Islamic Platform',
@@ -81,9 +71,9 @@ export const metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'TAZKIA — Islamic Platform',
+    title: 'تزكية',
     description: 'Connect with the Quran. Live with Sunnah. Grow with Faith.',
-    images: ['/apple-touch-icon.png'],
+    images: ['/icon.svg'],
     creator: '@tazkia',
   },
 
@@ -142,6 +132,7 @@ export default function RootLayout({ children }) {
       <body className={inter.variable} suppressHydrationWarning>
         <ThemeProvider>
           <LanguageProvider>
+            <DynamicTitle />
             <AuthProvider>
               {children}
               <TazkiaToaster />
