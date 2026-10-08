@@ -110,14 +110,14 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="tazkia" suppressHydrationWarning>
+    <html lang="en" data-theme="tazkiaDark" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('tazkia-theme') || 'light';
+                  var theme = localStorage.getItem('tazkia-theme') || 'dark';
                   var isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
                   document.documentElement.setAttribute('data-theme', isDark ? 'tazkiaDark' : 'tazkia');
                   var lang = localStorage.getItem('tazkia-lang') || 'en';
