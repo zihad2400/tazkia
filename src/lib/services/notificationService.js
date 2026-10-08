@@ -263,7 +263,7 @@ export async function notifySystem(userId, title, message, link) {
   return create(userId, 'system', title, message, link || '');
 }
 
-export default {
+const notificationService = {
   notifyPrayerSoon,
   notifyJumuah,
   notifyQuranDaily,
@@ -285,3 +285,5 @@ export default {
   notifyWelcome,
   notifySystem,
 };
+
+export default notificationService;

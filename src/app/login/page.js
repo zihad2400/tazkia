@@ -151,9 +151,8 @@ function LoginContent() {
                   autoComplete="email"
                   className="w-full pl-9 pr-3 py-3 rounded-xl border border-base-300 bg-base-200 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-base-content text-sm transition-all"
                   placeholder="you@example.com"
-autoComplete="email"
-name="email"
-id="login-email"
+                  name="email"
+                  id="login-email"
                 />
               </div>
             </div>
@@ -172,9 +171,8 @@ id="login-email"
                   autoComplete="current-password"
                   className="w-full pl-9 pr-10 py-3 rounded-xl border border-base-300 bg-base-200 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-base-content text-sm transition-all"
                   placeholder="••••••••"
-autoComplete="current-password"
-name="password"
-id="login-password"
+                  name="password"
+                  id="login-password"
                 />
                 <button
                   type="button"

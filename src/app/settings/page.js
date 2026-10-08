@@ -8,7 +8,7 @@ import {
   FaUser, FaBell, FaPalette, FaMobileAlt, FaLock, FaTrash,
   FaSave, FaSpinner, FaCheck, FaSignOutAlt, FaEye, FaEyeSlash,
   FaSun, FaMoon, FaDesktop, FaGlobe, FaFont, FaVolumeUp,
-  FaVibrate, FaPlay, FaMagic, FaEnvelope, FaQuran, FaBookOpen,
+  FaMobile, FaPlay, FaMagic, FaEnvelope, FaQuran, FaBookOpen,
   FaClock, FaExclamationTriangle, FaChevronLeft, FaTimes,
   FaHome, FaChartLine,
 } from 'react-icons/fa';
@@ -495,7 +495,7 @@ export default function SettingsPage() {
                 right={<Toggle value={prefs.soundEnabled} onChange={(v) => handleSavePrefs({ ...prefs, soundEnabled: v })} />}
               />
               <Row
-                icon={FaVibrate}
+                icon={FaMobile}
                 label={t.vibrationToggle}
                 desc={lang === 'bn' ? 'কম্পন চালু' : lang === 'ar' ? 'تفعيل الاهتزاز' : 'Enable vibration'}
                 right={<Toggle value={prefs.vibrationEnabled} onChange={(v) => handleSavePrefs({ ...prefs, vibrationEnabled: v })} />}
