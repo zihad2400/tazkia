@@ -1,0 +1,1765 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Manrope', sans-serif;
+  background: #E5DFD3;
+  color: #1A1613;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme='tazkiaDark'] body {
+  background: #0D1B2A;
+  color: #E8EBEF;
+}
+
+.font-arabic {
+  font-family: 'Noto Naskh Arabic', 'Amiri', serif;
+  direction: rtl;
+  line-height: 2.4;
+}
+
+.font-bangla { font-family: 'Noto Sans Bengali', sans-serif; }
+
+/* Islamic Pattern */
+.islamic-pattern {
+  background-color: #E5DFD3;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(14, 95, 76, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(168, 134, 31, 0.06) 0%, transparent 45%);
+}
+
+[data-theme='tazkiaDark'] .islamic-pattern {
+  background-color: #0D1B2A;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(26, 139, 110, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(212, 180, 74, 0.08) 0%, transparent 45%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #A8861F;
+  border-radius: 10px;
+  border: 2px solid #E5DFD3;
+}
+[data-theme='tazkiaDark'] ::-webkit-scrollbar-thumb {
+  border-color: #0D1B2A;
+  background: #D4B44A;
+}
+
+/* Card Elevation */
+.card-elevated {
+  box-shadow:
+    0 1px 3px rgba(26, 22, 19, 0.08),
+    0 4px 16px rgba(26, 22, 19, 0.1);
+  transition: all 0.25s ease;
+}
+
+.card-elevated:hover {
+  box-shadow:
+    0 2px 6px rgba(26, 22, 19, 0.1),
+    0 12px 32px rgba(26, 22, 19, 0.15);
+  transform: translateY(-2px);
+}
+
+[data-theme='tazkiaDark'] .card-elevated {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='tazkiaDark'] .card-elevated:hover {
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 12px 32px rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════ CUSTOM ANIMATIONS ═══════════════ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slideDown {
+  animation: slideDown 0.2s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Responsive text utilities */
+.xs\:block {
+  display: none;
+}
+@media (min-width: 420px) {
+  .xs\:block {
+    display: block;
+  }
+}
+
+/* ═══════════════ CUSTOM ANIMATIONS ═══════════════ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.xs\:block {
+  display: none;
+}
+@media (min-width: 420px) {
+  .xs\:block {
+    display: block;
+  }
+}
+
+/* RTL support for Arabic */
+[dir='rtl'] .font-arabic {
+  direction: rtl;
+}
+
+/* Quran Arabic Font Size (dynamic) */
+.quran-ayah-wrapper .ayah-arabic {
+  font-size: var(--ayah-font-size, 32px) !important;
+}
+
+@media (min-width: 768px) {
+  .quran-ayah-wrapper .ayah-arabic {
+    font-size: var(--ayah-font-size, 32px) !important;
+  }
+}
+
+/* Quran Dynamic Font Size */
+.quran-ayah-wrapper .ayah-arabic {
+  font-size: var(--ayah-font-size, 32px) !important;
+  transition: font-size 0.2s ease;
+}
+
+/* ═══════════════ TOAST ANIMATIONS ═══════════════ */
+@keyframes toastEnter {
+  0% {
+    transform: translateY(-100%) scale(0.85);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(8px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes toastExit {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* React Hot Toast overrides */
+div[role="status"],
+div[role="alert"] {
+  animation: toastEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.01em;
+}
+
+div[role="status"] > div:first-child,
+div[role="alert"] > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Success checkmark pulse */
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+div[role="status"] svg {
+  animation: successPulse 0.6s ease-in-out;
+}
+
+/* ═══════════════ TAJWEED COLORS ═══════════════ */
+.tajweed-h,
+.tajweed-s,
+.tajweed-l {
+  opacity: 0.6;
+}
+
+.tajweed-n,
+.tajweed-p,
+.tajweed-m {
+  font-weight: 600;
+}
+
+.tajweed-q,
+.tajweed-o {
+  font-weight: 600;
+}
+
+.tajweed-g {
+  font-weight: 500;
+}
+
+/* Hover effect on tajweed words */
+.ayah-arabic span[class^="tajweed-"] {
+  cursor: help;
+  border-radius: 3px;
+  transition: background-color 0.15s ease;
+}
+
+.ayah-arabic span[class^="tajweed-"]:hover {
+  background-color: rgba(201, 162, 39, 0.15);
+}
+
+/* ═══════════════ SCROLLBAR HIDE ═══════════════ */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══════════════ SMOOTH SCROLL ═══════════════ */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ═══════════════ MOBILE OPTIMIZATION ═══════════════ */
+@media (max-width: 640px) {
+  body {
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
+  }
+  
+  /* Better touch targets */
+  button, a {
+    touch-action: manipulation;
+  }
+}
+
+/* ═══════════════ SAFE AREA (iPhone notch) ═══════════════ */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* ═══════════════ LINE CLAMP ═══════════════ */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HADITH SECTION — FULL RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+/* Prevent horizontal overflow everywhere */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Better text wrapping for long words/URLs */
+.hadith-text,
+p, h1, h2, h3, h4 {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* ═══ Mobile optimization (≤ 640px) ═══ */
+@media (max-width: 640px) {
+  /* Arabic font — comfortable reading */
+  .font-arabic {
+    font-size: 20px;
+    line-height: 2.2;
+  }
+  
+  /* Bengali translation */
+  .hadith-text {
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  
+  /* Better touch targets */
+  button, a[role="button"] {
+    min-height: 40px;
+    min-width: 40px;
+    touch-action: manipulation;
+  }
+  
+  /* Compact cards on mobile */
+  .hadith-card {
+    padding: 12px;
+  }
+  
+  /* Reference grid stays 2-column but tighter */
+  .reference-grid {
+    gap: 6px;
+  }
+}
+
+/* ═══ Tablet (641-1024px) ═══ */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .font-arabic {
+    font-size: 24px;
+  }
+  
+  .hadith-text {
+    font-size: 17px;
+  }
+}
+
+/* ═══ Desktop (≥ 1025px) ═══ */
+@media (min-width: 1025px) {
+  .font-arabic {
+    font-size: 26px;
+  }
+  
+  .hadith-text {
+    font-size: 18px;
+    line-height: 1.9;
+  }
+}
+
+/* ═══ Arabic text always right-aligned properly ═══ */
+.font-arabic,
+[dir="rtl"] {
+  text-align: right;
+  unicode-bidi: plaintext;
+}
+
+/* ═══ Hide scrollbar but keep functionality ═══ */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══ Safe area for iPhone notch ═══ */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ═══ Prevent text zoom on mobile input focus ═══ */
+@media (max-width: 640px) {
+  input, textarea, select {
+    font-size: 16px; /* iOS zooms below 16px */
+  }
+}
+
+/* ═══ Line clamp utility ═══ */
+.line-clamp-1,
+.line-clamp-2,
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-1 { -webkit-line-clamp: 1; }
+.line-clamp-2 { -webkit-line-clamp: 2; }
+.line-clamp-3 { -webkit-line-clamp: 3; }
+
+/* ═══════════════════════════════════════════════════════════
+   DU'A SECTION — FULL RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+/* Prevent horizontal scroll */
+.dua-page,
+.dua-page * {
+  max-width: 100%;
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+  .dua-actions {
+    flex-direction: column;
+  }
+}
+
+/* Arabic text responsive */
+@media (max-width: 640px) {
+  .font-arabic {
+    font-size: 19px;
+    line-height: 2.1;
+  }
+}
+
+/* Touch-friendly buttons */
+.dua-action-btn {
+  min-height: 40px;
+  touch-action: manipulation;
+}
+
+/* Prevent iOS zoom on input */
+input[type="text"],
+input[type="search"] {
+  font-size: 16px;
+}
+
+@media (min-width: 641px) {
+  input[type="text"],
+  input[type="search"] {
+    font-size: 14px;
+  }
+}
+
+/* Smooth transitions */
+.dua-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.dua-card:active {
+  transform: scale(0.99);
+}
+
+/* Save button animation */
+@keyframes bookmarkPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.dua-saved-icon {
+  animation: bookmarkPop 0.3s ease-out;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL TAJWEED COLORS — Always On
+   ═══════════════════════════════════════════════════════════ */
+
+/* All tajweed-colored spans */
+[class^="tajweed-"],
+[class*=" tajweed-"] {
+  font-weight: inherit;
+  transition: background-color 0.15s ease;
+  border-radius: 3px;
+  cursor: help;
+}
+
+[class^="tajweed-"]:hover,
+[class*=" tajweed-"]:hover {
+  background-color: rgba(201, 162, 39, 0.15);
+}
+
+/* Silent letters — subtle */
+.tajweed-h,
+.tajweed-s,
+.tajweed-l {
+  opacity: 0.65;
+}
+
+/* Madda — bold for emphasis */
+.tajweed-n,
+.tajweed-p,
+.tajweed-m {
+  font-weight: 600;
+}
+
+/* Qalqalah — bold */
+.tajweed-q,
+.tajweed-o {
+  font-weight: 600;
+}
+
+/* Ghunnah — medium */
+.tajweed-g {
+  font-weight: 500;
+}
+
+/* Ikhfa — normal */
+.tajweed-f,
+.tajweed-w {
+  font-weight: 500;
+}
+
+/* Idgham — medium */
+.tajweed-a,
+.tajweed-u,
+.tajweed-i {
+  font-weight: 500;
+}
+
+/* Iqlab */
+.tajweed-b,
+.tajweed-c {
+  font-weight: 600;
+}
+
+/* ═══ Dark mode adjustments ═══ */
+[data-theme='tazkiaDark'] .tajweed-h,
+[data-theme='tazkiaDark'] .tajweed-s,
+[data-theme='tazkiaDark'] .tajweed-l {
+  opacity: 0.55;
+}
+
+/* ═══ Legend styles ═══ */
+.tajweed-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--fallback-b1, oklch(var(--b1)));
+  border: 1px solid var(--fallback-b3, oklch(var(--b3)));
+  font-size: 11px;
+}
+
+.tajweed-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PRAYER ICONS — Animations
+   ═══════════════════════════════════════════════════════════ */
+
+/* Active pulse — for next prayer */
+.prayer-icon-active {
+  animation: iconGlow 2s ease-in-out infinite;
+}
+
+@keyframes iconGlow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(251, 191, 36, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+/* Current prayer subtle */
+.prayer-icon-current {
+  box-shadow: 0 0 0 2px rgba(15, 81, 50, 0.3);
+}
+
+/* Pulse animation — Dhuhr */
+.prayer-icon-pulse {
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(251, 191, 36, 0.7);
+  }
+}
+
+/* Sunrise rise animation */
+.prayer-icon-sunrise {
+  animation: iconRise 4s ease-in-out infinite;
+}
+
+@keyframes iconRise {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Sunset drop animation */
+.prayer-icon-sunset {
+  animation: iconSunset 4s ease-in-out infinite;
+}
+
+@keyframes iconSunset {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 0.9;
+  }
+}
+
+/* Twinkle for night */
+.prayer-icon-twinkle {
+  animation: iconTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes iconTwinkle {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}
+
+/* Drift for Asr */
+.prayer-icon-drift {
+  animation: iconDrift 5s ease-in-out infinite;
+}
+
+@keyframes iconDrift {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+}
+
+/* ═══ Next prayer glow ring ═══ */
+.prayer-next-ring {
+  position: relative;
+}
+
+.prayer-next-ring::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #C9A227, #FFD966, #C9A227);
+  background-size: 200% 200%;
+  z-index: -1;
+  animation: goldRing 2s ease-in-out infinite;
+}
+
+@keyframes goldRing {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 0.6;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   KNOWLEDGE SECTION — RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+/* Prevent horizontal scroll */
+.article-content,
+.article-content * {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Line clamp utilities */
+.line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-4 { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+  /* Reading comfort */
+  .article-content p,
+  .prose-content p {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  
+  /* Better touch targets */
+  .article-card {
+    min-height: 120px;
+  }
+  
+  /* Prevent iOS zoom */
+  input[type="text"],
+  input[type="search"] {
+    font-size: 16px;
+  }
+}
+
+/* Tablet (641-1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .article-content p,
+  .prose-content p {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+}
+
+/* Desktop (≥ 1025px) */
+@media (min-width: 1025px) {
+  .article-content p,
+  .prose-content p {
+    font-size: 16px;
+    line-height: 1.95;
+  }
+}
+
+/* Extra large (≥ 1440px) */
+@media (min-width: 1440px) {
+  .articles-max-width {
+    max-width: 1400px;
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth transitions */
+.article-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+.article-card:active {
+  transform: scale(0.98);
+}
+
+/* Print-friendly */
+@media print {
+  .no-print,
+  nav,
+  header,
+  footer,
+  button:not(.print-keep) {
+    display: none !important;
+  }
+  
+  .article-content {
+    color: #000 !important;
+    background: #fff !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION — Advanced Animations
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Gradient Background Animation ─── */
+@keyframes heroGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    #0F5132 0%,
+    #0A3B24 25%,
+    #0F5132 50%,
+    #166B42 75%,
+    #0F5132 100%
+  );
+  background-size: 300% 300%;
+  animation: heroGradient 15s ease infinite;
+}
+
+/* ─── Floating Orbs ─── */
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 20px) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 40px) scale(1.15); }
+}
+
+@keyframes floatOrb3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 50px) scale(0.9); }
+}
+
+.hero-orb-1 { animation: floatOrb1 18s ease-in-out infinite; }
+.hero-orb-2 { animation: floatOrb2 22s ease-in-out infinite; }
+.hero-orb-3 { animation: floatOrb3 20s ease-in-out infinite; }
+
+/* ─── Rotating Islamic Pattern ─── */
+@keyframes rotatePattern {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-pattern-rotate {
+  animation: rotatePattern 120s linear infinite;
+}
+
+/* ─── Star Twinkle ─── */
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.hero-star {
+  animation: starTwinkle 4s ease-in-out infinite;
+}
+
+/* ─── Fade In Up ─── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.hero-delay-1 { animation-delay: 0.2s; opacity: 0; }
+.hero-delay-2 { animation-delay: 0.4s; opacity: 0; }
+.hero-delay-3 { animation-delay: 0.6s; opacity: 0; }
+.hero-delay-4 { animation-delay: 0.8s; opacity: 0; }
+
+/* ─── Pulse Ring for Prayer ─── */
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.5); }
+  70% { box-shadow: 0 0 0 20px rgba(201, 162, 39, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0); }
+}
+
+.hero-pulse-ring {
+  animation: pulseRing 2.5s infinite;
+}
+
+/* ─── Gradient Text ─── */
+.hero-gradient-text {
+  background: linear-gradient(135deg, #FFD966 0%, #C9A227 50%, #FFD966 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: heroGradient 4s ease infinite;
+}
+
+/* ─── Button Shine ─── */
+@keyframes buttonShine {
+  0% { left: -100%; }
+  50%, 100% { left: 200%; }
+}
+
+.hero-btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-btn-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: buttonShine 3s ease-in-out infinite;
+}
+
+/* ─── Arabic Glow ─── */
+@keyframes arabicGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(201, 162, 39, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(201, 162, 39, 0.8), 0 0 40px rgba(201, 162, 39, 0.4);
+  }
+}
+
+.hero-arabic-glow {
+  animation: arabicGlow 3s ease-in-out infinite;
+}
+
+/* ─── Scroll Indicator ─── */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+.hero-scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* ─── Islamic Geometric Pattern Background ─── */
+.islamic-geometric-bg {
+  background-image:
+    /* 8-pointed stars */
+    radial-gradient(circle at 20% 20%, rgba(201, 162, 39, 0.08) 0%, transparent 30%),
+    radial-gradient(circle at 80% 30%, rgba(201, 162, 39, 0.06) 0%, transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(201, 162, 39, 0.08) 0%, transparent 30%),
+    /* Grid lines */
+    linear-gradient(45deg, transparent 47%, rgba(201, 162, 39, 0.03) 47%, rgba(201, 162, 39, 0.03) 53%, transparent 53%),
+    linear-gradient(-45deg, transparent 47%, rgba(201, 162, 39, 0.03) 47%, rgba(201, 162, 39, 0.03) 53%, transparent 53%);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 80px 80px, 80px 80px;
+}
+
+/* ─── Glass Card ─── */
+.hero-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='tazkiaDark'] .hero-glass {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(201, 162, 39, 0.2);
+}
+
+/* ─── Mobile adjustments ─── */
+@media (max-width: 640px) {
+  .hero-arabic-glow {
+    text-shadow: 0 0 15px rgba(201, 162, 39, 0.5);
+  }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient,
+  .hero-orb-1,
+  .hero-orb-2,
+  .hero-orb-3,
+  .hero-pattern-rotate,
+  .hero-star,
+  .hero-pulse-ring,
+  .hero-gradient-text,
+  .hero-arabic-glow,
+  .hero-scroll-indicator {
+    animation: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER — Advanced Styling
+   ═══════════════════════════════════════════════════════════ */
+
+/* Footer newsletter input focus glow */
+footer input[type="email"]:focus {
+  box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.15);
+}
+
+/* Footer social icon shine effect */
+footer a[aria-label]:hover svg {
+  filter: drop-shadow(0 0 8px rgba(201, 162, 39, 0.5));
+}
+
+/* Footer link underline animation */
+footer a:not([aria-label]):hover span {
+  text-shadow: 0 0 20px rgba(201, 162, 39, 0.4);
+}
+
+/* Mobile footer adjustments */
+@media (max-width: 640px) {
+  footer {
+    padding-bottom: 80px !important; /* Space for mobile bottom nav */
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Footer link dot hover */
+footer .group:hover .w-1.h-1 {
+  width: 0.75rem !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL CONTAINER SYSTEM — Professional Layout
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Base Container ─── */
+.tz-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;    /* 16px mobile */
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .tz-container {
+    padding-left: 1.5rem;  /* 24px tablet */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tz-container {
+    padding-left: 2rem;    /* 32px desktop */
+    padding-right: 2rem;
+  }
+}
+
+/* ─── Width Variants ─── */
+
+/* Ultra-wide: Home hero, big sections */
+.tz-wide {
+  max-width: 1440px;
+}
+
+/* Standard wide: Home content, tools grid */
+.tz-standard {
+  max-width: 1280px;
+}
+
+/* Content: Lists, search, cards */
+.tz-content {
+  max-width: 1152px;
+}
+
+/* Reading: Articles, hadith detail, quran */
+.tz-reading {
+  max-width: 896px;
+}
+
+/* Focused: Login, register, forms */
+.tz-focused {
+  max-width: 512px;
+}
+
+/* Narrow: Legal pages, text-heavy */
+.tz-narrow {
+  max-width: 768px;
+}
+
+/* ─── Preset Combo Classes ─── */
+.tz-page {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 1280px;
+}
+
+@media (min-width: 640px) {
+  .tz-page {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tz-page {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.tz-page-reading {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 896px;
+}
+
+@media (min-width: 640px) {
+  .tz-page-reading {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.tz-page-narrow {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 768px;
+}
+
+@media (min-width: 640px) {
+  .tz-page-narrow {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.tz-page-focused {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 512px;
+}
+
+/* ─── Full-width prevention (viewport overflow) ─── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ─── Ensure images/media don't exceed container ─── */
+img, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ─── Smooth text rendering in wide layouts ─── */
+@media (min-width: 1280px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1536px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FIXED NAVBAR — Bulletproof Setup
+   ═══════════════════════════════════════════════════════════ */
+
+/* Prevent overflow issues that break sticky/fixed */
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  /* Ensure body doesn't create stacking context issues */
+  isolation: isolate;
+}
+
+/* Ensure no transform on body */
+body {
+  transform: none !important;
+}
+
+/* Fixed navbar — highest priority */
+.navbar-fixed-wrapper {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+}
+
+/* Prevent layout shift when modals open */
+body.modal-open {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0);
+}
+
+/* Navbar animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure content doesn't hide under navbar */
+.tz-main-content {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* Safe area for iPhone notch */
+@supports (padding: env(safe-area-inset-top)) {
+  .navbar-fixed-wrapper {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   🎨 TAZKIA — Green Buttons Keep, Dark Everything Else
+   Rules:
+   ✅ Buttons with bg-primary → KEEP green
+   ✅ Button hover states → KEEP green
+   🎨 All backgrounds/cards/sections → DARK
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   1. HERO GRADIENT — Green → Dark
+   ───────────────────────────────────────────── */
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    #0B1220 0%,
+    #111A2E 25%,
+    #0F172A 50%,
+    #1A2540 75%,
+    #0B1220 100%
+  ) !important;
+  background-size: 300% 300% !important;
+  animation: heroGradient 15s ease infinite !important;
+}
+
+/* ─────────────────────────────────────────────
+   2. ALL GRADIENT BACKGROUNDS → Dark
+   (Exception: buttons)
+   ───────────────────────────────────────────── */
+[class*="from-primary"][class*="via-primary-dark"]:not(button):not(a):not(.btn),
+[class*="from-primary"][class*="to-primary-dark"]:not(button):not(a):not(.btn),
+[class*="from-primary"][class*="via-primary"]:not(button):not(a):not(.btn),
+[class*="from-emerald"][class*="to-teal"]:not(button):not(a):not(.btn),
+[class*="from-emerald"][class*="to-green"]:not(button):not(a):not(.btn),
+[class*="from-green"][class*="to-emerald"]:not(button):not(a):not(.btn) {
+  background-image: linear-gradient(
+    135deg,
+    #0B1220 0%,
+    #111A2E 50%,
+    #0B1220 100%
+  ) !important;
+}
+
+/* ─────────────────────────────────────────────
+   3. VERSE SECTION → Dark
+   ───────────────────────────────────────────── */
+.verse-section {
+  background: linear-gradient(
+    135deg,
+    #0B1220 0%,
+    #111A2E 50%,
+    #0B1220 100%
+  ) !important;
+}
+
+/* ─────────────────────────────────────────────
+   4. SOLID bg-primary (containers, not buttons)
+   ───────────────────────────────────────────── */
+div.bg-primary:not(button):not(a),
+section.bg-primary,
+main > div.bg-primary:not(button):not(a),
+header .bg-primary:not(button):not(a):not(.badge) {
+  background-color: #0B1220 !important;
+  color: #F1F5F9 !important;
+}
+
+/* BUT keep bg-primary on BUTTONS */
+button.bg-primary,
+a.bg-primary,
+.btn.bg-primary,
+.btn-primary {
+  background-color: #0F5132 !important;  /* Original green */
+  color: #FFFFFF !important;
+}
+
+button.bg-primary:hover,
+a.bg-primary:hover,
+.btn-primary:hover {
+  background-color: #0A3B24 !important;
+}
+
+/* ─────────────────────────────────────────────
+   5. Solid green Tailwind backgrounds (containers)
+   ───────────────────────────────────────────── */
+div.bg-emerald-500:not(button):not(a),
+div.bg-emerald-600:not(button):not(a),
+div.bg-green-500:not(button):not(a),
+div.bg-green-600:not(button):not(a),
+section.bg-emerald-500,
+section.bg-green-500 {
+  background-color: #0B1220 !important;
+}
+
+/* But keep small green icon containers */
+span.bg-emerald-500\/10,
+div.bg-emerald-500\/10,
+span.bg-green-500\/10 {
+  /* Leave as-is — small icon bg */
+}
+
+/* ─────────────────────────────────────────────
+   6. FOOTER NEWSLETTER CARD → Dark
+   ───────────────────────────────────────────── */
+footer div[class*="from-primary"][class*="via-primary-dark"],
+footer [class*="from-primary"][class*="to-primary-dark"] {
+  background-image: linear-gradient(
+    135deg,
+    #1A2540 0%,
+    #111A2E 100%
+  ) !important;
+}
+
+/* ─────────────────────────────────────────────
+   7. ANNOUNCEMENT BAR → Dark
+   ───────────────────────────────────────────── */
+.announcement-bar,
+div[class*="from-primary"][class*="via-primary-dark"]:not(footer *):not(button):not(a):not(main section):not(.verse-section) {
+  background-image: linear-gradient(
+    90deg,
+    #0B1220 0%,
+    #111A2E 50%,
+    #0B1220 100%
+  ) !important;
+}
+
+/* ─────────────────────────────────────────────
+   8. Quran surah header → Dark
+   ───────────────────────────────────────────── */
+main div[class*="from-primary"][class*="via-primary"][class*="to-primary-dark"]:not(button) {
+  background-image: linear-gradient(
+    135deg,
+    #0B1220 0%,
+    #111A2E 100%
+  ) !important;
+}
+
+/* ─────────────────────────────────────────────
+   9. KEEP gold accents gold
+   ───────────────────────────────────────────── */
+.text-gold,
+.font-arabic,
+.text-gold\/90,
+.text-gold\/80,
+.text-gold\/70,
+.text-gold\/60,
+.text-gold\/50,
+.text-gold\/40,
+.text-gold\/30,
+.text-gold\/20 {
+  color: #FBBF24 !important;
+}
+
+/* Keep gold buttons */
+button.bg-gold,
+a.bg-gold,
+.btn.bg-gold,
+.btn-gold {
+  background: linear-gradient(135deg, #FBBF24 0%, #D4A017 100%) !important;
+  color: #0B1220 !important;
+}
+
+/* ─────────────────────────────────────────────
+   10. KEEP small green icon badges (icon backgrounds)
+   ───────────────────────────────────────────── */
+span.bg-emerald-500\/10,
+span.bg-emerald-500\/15,
+div.bg-emerald-500\/10,
+.bg-emerald-500\/10,
+.bg-green-500\/10 {
+  /* Keep as small translucent green */
+}
+
+/* ─────────────────────────────────────────────
+   11. DASHBOARD icon colors — keep
+   (small colorful squares)
+   ───────────────────────────────────────────── */
+.w-8.h-8.bg-emerald-500\/10,
+.w-10.h-10.bg-emerald-500\/10,
+.w-12.h-12.bg-emerald-500\/10,
+.w-8.h-8.bg-gradient-to-br {
+  /* Keep as-is — small icon squares */
+}
+
+/* ─────────────────────────────────────────────
+   12. OVERRIDE — any dark gradient fallback
+   ───────────────────────────────────────────── */
+[data-theme="tazkia"] .hero-gradient,
+[data-theme="tazkia"] .verse-section {
+  background-image: linear-gradient(
+    135deg,
+    #0B1220 0%,
+    #111A2E 50%,
+    #0B1220 100%
+  ) !important;
+}
+
+[data-theme="tazkiaDark"] .hero-gradient,
+[data-theme="tazkiaDark"] .verse-section {
+  background-image: linear-gradient(
+    135deg,
+    #0B1220 0%,
+    #111A2E 50%,
+    #0B1220 100%
+  ) !important;
+}
+
+/* ─────────────────────────────────────────────
+   13. PRESERVE animation
+   ───────────────────────────────────────────── */
+@keyframes heroGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   🦶 FOOTER — Full Dark (no green)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Main footer background ─── */
+footer,
+footer.bg-\[\#071A12\],
+footer[class*="bg-"] {
+  background: linear-gradient(180deg, #0B1220 0%, #111A2E 100%) !important;
+  background-color: #0B1220 !important;
+  color: #F1F5F9 !important;
+}
+
+/* ─── Newsletter card inside footer — dark ─── */
+footer div[class*="from-primary"],
+footer div[class*="from-primary"][class*="via-primary-dark"],
+footer div[class*="from-primary"][class*="to-primary-dark"],
+footer [class*="bg-gradient-to-br"][class*="from-primary"],
+footer [class*="bg-gradient-to-r"][class*="from-primary"] {
+  background: linear-gradient(135deg, #111A2E 0%, #0B1220 50%, #1A2540 100%) !important;
+  border-color: rgba(251, 191, 36, 0.2) !important;
+}
+
+/* ─── Footer logo box (small green icon) ─── */
+footer a > div[class*="from-primary"],
+footer .w-11.h-11[class*="from-primary"],
+footer .w-14.h-14[class*="from-primary"],
+footer .w-9.h-9[class*="from-primary"] {
+  background: linear-gradient(135deg, #FBBF24 0%, #D4A017 100%) !important;
+  color: #0B1220 !important;
+  border-color: rgba(251, 191, 36, 0.3) !important;
+}
+
+footer a > div[class*="from-primary"] svg,
+footer .w-11.h-11[class*="from-primary"] svg {
+  color: #0B1220 !important;
+}
+
+/* ─── Footer text colors — dark theme ─── */
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5 {
+  color: #F1F5F9 !important;
+}
+
+footer p,
+footer span,
+footer div,
+footer li {
+  color: #CBD5E1;
+}
+
+footer a {
+  color: #CBD5E1 !important;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #FBBF24 !important;
+}
+
+/* ─── Gold accents stay gold ─── */
+footer .text-gold,
+footer h4,
+footer [class*="text-gold"] {
+  color: #FBBF24 !important;
+}
+
+/* ─── Muted text ─── */
+footer .text-white\/60,
+footer .text-white\/50,
+footer .text-white\/40 {
+  color: #94A3B8 !important;
+}
+
+footer .text-white\/80,
+footer .text-white\/70 {
+  color: #CBD5E1 !important;
+}
+
+/* ─── Social icons ─── */
+footer a[class*="bg-white\/5"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+footer a[class*="bg-white\/5"]:hover {
+  background-color: rgba(251, 191, 36, 0.15) !important;
+  border-color: rgba(251, 191, 36, 0.3) !important;
+}
+
+/* ─── Footer inputs ─── */
+footer input,
+footer input[type="email"] {
+  background-color: rgba(11, 18, 32, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F1F5F9 !important;
+}
+
+footer input::placeholder {
+  color: #64748B !important;
+}
+
+footer input:focus {
+  border-color: #FBBF24 !important;
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15) !important;
+}
+
+/* ─── Footer buttons — keep green if user wants green buttons ─── */
+footer button.bg-primary,
+footer button[class*="bg-primary"] {
+  background-color: #0F5132 !important;
+  color: #FFFFFF !important;
+}
+
+footer button.bg-primary:hover {
+  background-color: #0A3B24 !important;
+}
+
+/* ─── Footer bottom bar ─── */
+footer .border-t {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ─── Footer bottom links ─── */
+footer a[href*="privacy"],
+footer a[href*="terms"],
+footer a[href*="contact"],
+footer button[class*="Search"],
+footer button:has(svg) {
+  color: #94A3B8 !important;
+}
+
+footer a[href*="privacy"]:hover,
+footer a[href*="terms"]:hover,
+footer a[href*="contact"]:hover {
+  color: #FBBF24 !important;
+}
+
+/* ─── Language buttons ─── */
+footer button[class*="px-3"][class*="py-1.5"] {
+  color: #94A3B8 !important;
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+footer button[class*="px-3"][class*="py-1.5"]:hover {
+  color: #FBBF24 !important;
+  background-color: rgba(251, 191, 36, 0.1) !important;
+}
+
+/* Active language button */
+footer button.bg-primary,
+footer button[class*="bg-gold"] {
+  background-color: #FBBF24 !important;
+  color: #0B1220 !important;
+}
+
+/* ─── "Made with ❤️" text ─── */
+footer .text-red-500,
+footer .text-red-400,
+footer [class*="text-red"] {
+  color: #F87171 !important;
+}
+
+/* ─── Newsletter header/badge ─── */
+footer .bg-gold\/20,
+footer [class*="bg-gold\/"] {
+  background-color: rgba(251, 191, 36, 0.15) !important;
+  border-color: rgba(251, 191, 36, 0.3) !important;
+  color: #FBBF24 !important;
+}
+
+/* ─── Footer decorative orbs ─── */
+footer .hero-orb-1,
+footer .hero-orb-2 {
+  /* Keep subtle */
+  opacity: 0.5 !important;
+}
+
+/* ─── Handle both themes ─── */
+[data-theme="tazkia"] footer,
+[data-theme="tazkiaDark"] footer {
+  background: linear-gradient(180deg, #0B1220 0%, #111A2E 100%) !important;
+  color: #F1F5F9 !important;
+}
+
+[data-theme="tazkia"] footer div[class*="from-primary"],
+[data-theme="tazkiaDark"] footer div[class*="from-primary"] {
+  background: linear-gradient(135deg, #111A2E 0%, #0B1220 50%, #1A2540 100%) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   🦶 FOOTER LOGO — White Icon
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Logo icon container — white/light bg ─── */
+footer a > div[class*="from-primary"],
+footer a > div[class*="bg-gradient"],
+footer a > div.rounded-2xl,
+footer a > div.rounded-xl {
+  background: #FFFFFF !important;
+  color: #0B1220 !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ─── Icon inside (mosque) ─── */
+footer a > div[class*="from-primary"] svg,
+footer a > div[class*="bg-gradient"] svg,
+footer a > div.rounded-2xl svg,
+footer a > div.rounded-xl svg,
+footer a > div > svg {
+  color: #0B1220 !important;
+  fill: #0B1220 !important;
+}
+
+/* ─── TAZKIA text — white ─── */
+footer a span,
+footer a p,
+footer a .font-bold,
+footer a [class*="text-"] {
+  color: #FFFFFF !important;
+}
+
+/* ─── "Islamic Platform" subtitle — soft white ─── */
+footer a p[class*="text-gold"],
+footer a span[class*="text-gold"],
+footer a [class*="text-gold"] {
+  color: #FBBF24 !important;
+}
+
+footer a p[class*="text-white"],
+footer a p[class*="uppercase"],
+footer a span[class*="uppercase"] {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ─── Fallback ─── */
+footer h1,
+footer h2,
+footer h3 {
+  color: #FFFFFF !important;
+}
+
+/* Ensure both themes */
+[data-theme="tazkia"] footer a > div[class*="from-primary"],
+[data-theme="tazkiaDark"] footer a > div[class*="from-primary"] {
+  background: #FFFFFF !important;
+}
+
+[data-theme="tazkia"] footer a > div[class*="from-primary"] svg,
+[data-theme="tazkiaDark"] footer a > div[class*="from-primary"] svg {
+  color: #0B1220 !important;
+  fill: #0B1220 !important;
+}
+
