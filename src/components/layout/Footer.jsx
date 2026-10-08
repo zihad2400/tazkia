@@ -97,7 +97,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-[#071A12] text-white mt-20 pb-20 lg:pb-0">
+    <footer className="relative overflow-hidden bg-[#071A12] text-white mt-6 sm:mt-12 lg:mt-20 pb-2 sm:pb-4 lg:pb-0">
 
       {/* Decorative Top Border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
@@ -114,14 +114,14 @@ export default function Footer() {
       </div>
 
       {/* Main Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
+      <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-16">
 
         {/* Newsletter CTA */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 mb-10 sm:mb-14 shadow-2xl border border-gold/20">
+        <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-10 mb-5 sm:mb-8 lg:mb-14 shadow-xl sm:shadow-2xl border border-gold/20">
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-gold/20 rounded-full blur-3xl" />
           <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gold/10 rounded-full blur-3xl" />
 
-          <div className="relative grid lg:grid-cols-2 gap-5 sm:gap-8 items-center">
+          <div className="relative grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/20 border border-gold/30 text-gold text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-3">
                 <FaEnvelope size={10} />
@@ -182,7 +182,7 @@ export default function Footer() {
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 mb-8 sm:mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-x-3 gap-y-5 sm:gap-x-6 sm:gap-y-6 lg:gap-8 mb-5 sm:mb-8 lg:mb-10">
 
           {/* Brand Column */}
           <div className="lg:col-span-3 sm:col-span-2 lg:col-span-3">
@@ -253,7 +253,7 @@ export default function Footer() {
 
           {/* Link Columns */}
           {sections.map((section) => (
-            <div key={section.title} className="lg:col-span-2">
+            <div key={section.title} className="col-span-1 lg:col-span-2">
               <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-gold mb-3 sm:mb-4 flex items-center gap-2">
                 <span className="w-1 h-3 bg-gold rounded-full" />
                 {section.title}
@@ -336,7 +336,7 @@ export default function Footer() {
         </div>
 
         {/* Trust Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 py-5 sm:py-6 border-y border-white/10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 py-3 sm:py-4 lg:py-6 border-y border-white/10">
           {[
             { icon: '📖', title: '১০০% সহীহ', desc: 'প্রমাণিত সূত্র' },
             { icon: '🔒', title: 'নিরাপদ', desc: 'ডেটা সুরক্ষিত' },
@@ -362,7 +362,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="relative border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-center md:text-left">
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 text-[10px] sm:text-xs text-white/50">
               <span>© {new Date().getFullYear()}</span>
