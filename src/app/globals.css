@@ -1289,3 +1289,806 @@ body.modal-open {
   }
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER MOBILE SPACING FIX
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  footer {
+    margin-top: 0.75rem !important;
+    padding-bottom: 80px !important;
+  }
+
+  footer > div.relative.max-w-7xl {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  footer .bg-gradient-to-br.from-primary {
+    padding: 0.9rem !important;
+    margin-bottom: 1rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  footer .bg-gradient-to-br.from-primary .grid {
+    gap: 0.75rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-12 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-12 > div:first-child {
+    grid-column: 1 / -1 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-12 > div:last-child {
+    grid-column: 1 / -1 !important;
+    margin-top: 0.25rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-12 > div:not(:first-child):not(:last-child) {
+    padding: 0 !important;
+  }
+
+  footer h4 {
+    margin-bottom: 0.6rem !important;
+    font-size: 10px !important;
+  }
+
+  footer ul.space-y-2\.5 > li {
+    margin-top: 0 !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  footer ul.space-y-2\.5 > li:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  footer ul a,
+  footer ul button {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+
+  footer .lg\:col-span-3 a.group {
+    margin-bottom: 0.6rem !important;
+  }
+
+  footer .lg\:col-span-3 p {
+    margin-bottom: 0.5rem !important;
+    line-height: 1.45 !important;
+  }
+
+  footer .lg\:col-span-3 .space-y-2 {
+    gap: 0.4rem !important;
+  }
+
+  footer .lg\:col-span-3 .space-y-2 > * + * {
+    margin-top: 0.4rem !important;
+  }
+
+  footer .lg\:col-span-3 .flex.flex-wrap {
+    gap: 0.35rem !important;
+  }
+
+  footer .lg\:col-span-3 a[aria-label] {
+    width: 1.85rem !important;
+    height: 1.85rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-4 {
+    gap: 0.4rem 0.5rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  footer .relative.border-t.border-white\/10 > div {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  footer .flex.flex-col.md\:flex-row.items-center.justify-between {
+    gap: 0.5rem !important;
+  }
+
+  footer .flex.flex-wrap.items-center.justify-center.md\:justify-start {
+    gap: 0.3rem !important;
+    font-size: 10px !important;
+  }
+
+  footer .flex.items-center.gap-1\.5 {
+    gap: 0.3rem !important;
+    font-size: 10px !important;
+  }
+
+  footer .flex.items-center.gap-1 {
+    gap: 0.3rem !important;
+    margin-top: 0.25rem !important;
+  }
+
+  footer .flex.items-center.gap-1 button {
+    padding: 0.3rem 0.55rem !important;
+    font-size: 9px !important;
+  }
+
+  footer .mt-3.sm\:mt-4.pt-3.sm\:pt-4 {
+    margin-top: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    gap: 0.4rem 0.5rem !important;
+    font-size: 9px !important;
+  }
+
+  footer > button.fixed.bottom-20 {
+    bottom: 5rem !important;
+    right: 0.75rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER MOBILE SPACING FIX
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  footer {
+    margin-top: 0.75rem !important;
+    padding-bottom: 80px !important;
+  }
+
+  footer > div.relative.max-w-7xl {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  footer .bg-gradient-to-br.from-primary {
+    padding: 0.9rem !important;
+    margin-bottom: 1rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  footer .bg-gradient-to-br.from-primary .grid {
+    gap: 0.75rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-12 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-12 > div:first-child {
+    grid-column: 1 / -1 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-12 > div:last-child {
+    grid-column: 1 / -1 !important;
+    margin-top: 0.25rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-12 > div:not(:first-child):not(:last-child) {
+    padding: 0 !important;
+  }
+
+  footer h4 {
+    margin-bottom: 0.6rem !important;
+    font-size: 10px !important;
+  }
+
+  footer ul.space-y-2\.5 > li {
+    margin-top: 0 !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  footer ul.space-y-2\.5 > li:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  footer ul a,
+  footer ul button {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+
+  footer .lg\:col-span-3 a.group {
+    margin-bottom: 0.6rem !important;
+  }
+
+  footer .lg\:col-span-3 p {
+    margin-bottom: 0.5rem !important;
+    line-height: 1.45 !important;
+  }
+
+  footer .lg\:col-span-3 .space-y-2 {
+    gap: 0.4rem !important;
+  }
+
+  footer .lg\:col-span-3 .space-y-2 > * + * {
+    margin-top: 0.4rem !important;
+  }
+
+  footer .lg\:col-span-3 .flex.flex-wrap {
+    gap: 0.35rem !important;
+  }
+
+  footer .lg\:col-span-3 a[aria-label] {
+    width: 1.85rem !important;
+    height: 1.85rem !important;
+  }
+
+  footer .grid.grid-cols-2.sm\:grid-cols-4 {
+    gap: 0.4rem 0.5rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  footer .relative.border-t.border-white\/10 > div {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  footer .flex.flex-col.md\:flex-row.items-center.justify-between {
+    gap: 0.5rem !important;
+  }
+
+  footer .flex.flex-wrap.items-center.justify-center.md\:justify-start {
+    gap: 0.3rem !important;
+    font-size: 10px !important;
+  }
+
+  footer .flex.items-center.gap-1\.5 {
+    gap: 0.3rem !important;
+    font-size: 10px !important;
+  }
+
+  footer .flex.items-center.gap-1 {
+    gap: 0.3rem !important;
+    margin-top: 0.25rem !important;
+  }
+
+  footer .flex.items-center.gap-1 button {
+    padding: 0.3rem 0.55rem !important;
+    font-size: 9px !important;
+  }
+
+  footer .mt-3.sm\:mt-4.pt-3.sm\:pt-4 {
+    margin-top: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    gap: 0.4rem 0.5rem !important;
+    font-size: 9px !important;
+  }
+
+  footer > button.fixed.bottom-20 {
+    bottom: 5rem !important;
+    right: 0.75rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SETTINGS / NOTIFICATIONS — TOGGLE + ICON SIZE FIX
+   ═══════════════════════════════════════════════════════════ */
+
+/* Toggle switch — perfect sizing + knob positioning */
+button[type="button"].relative.rounded-full {
+  width: 2.75rem !important;
+  height: 1.5rem !important;
+  position: relative !important;
+}
+
+button[type="button"].relative.rounded-full > span {
+  position: absolute !important;
+  top: 0.175rem !important;
+  left: 0.175rem !important;
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* OFF state — knob left */
+button[type="button"].relative.rounded-full.bg-base-300 > span {
+  transform: translateX(0) !important;
+}
+
+/* ON state — knob right */
+button[type="button"].relative.rounded-full.bg-primary > span {
+  transform: translateX(1.25rem) !important;
+}
+
+/* Mobile settings icon wrappers — proper proportions */
+@media (max-width: 640px) {
+
+  /* Row icons in settings — bigger, clearer */
+  .bg-primary\/10.flex.items-center.justify-center.rounded-lg,
+  .bg-primary\/10.flex.items-center.justify-center.rounded-xl {
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+    min-width: 2.35rem !important;
+    min-height: 2.35rem !important;
+  }
+
+  /* Icons inside those wrappers */
+  .bg-primary\/10.flex.items-center.justify-center.rounded-lg svg,
+  .bg-primary\/10.flex.items-center.justify-center.rounded-xl svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* Notification page type icons — bigger */
+  .rounded-xl.flex.items-center.justify-center.shrink-0 svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* Row spacing — more breathing room */
+  .flex.items-center.gap-2\.5.py-3,
+  .flex.items-center.gap-2\.5.sm\:gap-3.py-3 {
+    padding-top: 0.9rem !important;
+    padding-bottom: 0.9rem !important;
+    gap: 0.75rem !important;
+    align-items: center !important;
+  }
+
+  /* Section card padding — slightly more */
+  .bg-base-200.border.border-base-300.rounded-xl {
+    padding: 1rem !important;
+  }
+
+  /* Section title spacing */
+  .mb-4.sm\:mb-5 > h2 {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .mb-4.sm\:mb-5 > p {
+    font-size: 0.72rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* Ensure toggle knob never overflows */
+@media (max-width: 640px) {
+  button[type="button"].relative.rounded-full {
+    width: 2.6rem !important;
+    height: 1.45rem !important;
+  }
+  button[type="button"].relative.rounded-full > span {
+    width: 1.05rem !important;
+    height: 1.05rem !important;
+    top: 0.2rem !important;
+    left: 0.2rem !important;
+  }
+  button[type="button"].relative.rounded-full.bg-primary > span {
+    transform: translateX(1.15rem) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NUCLEAR FIX — Force icon sizes (settings + notifications)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Notification page — type icons */
+.notif-icon-force,
+.notif-icon-force svg {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  max-width: 44px !important;
+  max-height: 44px !important;
+  flex-shrink: 0 !important;
+}
+
+.notif-icon-force svg {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+}
+
+/* Settings page — row icons */
+.row-icon-force,
+.row-icon-force svg {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  flex-shrink: 0 !important;
+}
+
+.row-icon-force svg {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+}
+
+/* Toggle switch — nuclear */
+
+
+
+
+
+
+
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   CLEAN SETTINGS + NOTIFICATIONS — Mobile Perfect Layout
+   ═══════════════════════════════════════════════════════════ */
+
+/* ══════ TOGGLE SWITCH ══════ */
+
+
+
+
+
+
+/* ══════ SETTINGS ROW (icon + text + toggle) ══════ */
+.row-item-force {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.row-item-force:last-child {
+  border-bottom: none !important;
+}
+
+.row-icon-force {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  background: rgba(5, 150, 105, 0.12) !important;
+  color: #10b981 !important;
+}
+
+.row-icon-force svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.row-text-force {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.row-label-force {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+  color: inherit !important;
+}
+
+.row-desc-force {
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  opacity: 0.6 !important;
+  color: inherit !important;
+}
+
+.row-right-force {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-left: 4px !important;
+}
+
+/* ══════ NOTIFICATIONS ITEM ══════ */
+.notif-item-force {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 14px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+  position: relative !important;
+}
+
+.notif-item-force:hover {
+  background: rgba(5, 150, 105, 0.04) !important;
+}
+
+.notif-item-force.notif-unread-force {
+  background: rgba(5, 150, 105, 0.02) !important;
+}
+
+.notif-item-force:last-child {
+  border-bottom: none !important;
+}
+
+.notif-icon-force {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.notif-icon-force svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.notif-content-force {
+  flex: 1 !important;
+  min-width: 0 !important;
+  padding-right: 32px !important;
+}
+
+.notif-title-row-force {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-bottom: 4px !important;
+}
+
+.notif-title-force {
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  flex: 1 !important;
+  color: inherit !important;
+}
+
+.notif-dot-force {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 9999px !important;
+  background: #10b981 !important;
+  flex-shrink: 0 !important;
+}
+
+.notif-message-force {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  opacity: 0.65 !important;
+  color: inherit !important;
+}
+
+.notif-time-force {
+  font-size: 11px !important;
+  line-height: 1.3 !important;
+  margin: 6px 0 0 0 !important;
+  opacity: 0.45 !important;
+  color: inherit !important;
+}
+
+.notif-delete-force {
+  position: absolute !important;
+  right: 8px !important;
+  top: 12px !important;
+  padding: 6px !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: inherit !important;
+  opacity: 0.35 !important;
+  transition: all 0.2s ease !important;
+}
+
+.notif-delete-force:hover {
+  opacity: 1 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+/* ══════ MOBILE ONLY TIGHTENING ══════ */
+@media (max-width: 640px) {
+  .row-item-force {
+    padding: 12px 0 !important;
+    gap: 10px !important;
+  }
+  .row-icon-force {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+  .row-label-force {
+    font-size: 13px !important;
+  }
+  .row-desc-force {
+    font-size: 11px !important;
+  }
+
+  .notif-item-force {
+    padding: 12px !important;
+    gap: 10px !important;
+  }
+  .notif-icon-force {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+  .notif-title-force {
+    font-size: 13px !important;
+  }
+  .notif-message-force {
+    font-size: 11px !important;
+  }
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   TOGGLE — Final Clean Version (single source of truth)
+   ═══════════════════════════════════════════════════════════ */
+.toggle-force {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  min-width: 46px;
+  max-width: 46px;
+  min-height: 26px;
+  max-height: 26px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  vertical-align: middle;
+  transition: background-color 0.25s ease;
+}
+
+.toggle-force > span {
+  position: absolute;
+  display: block;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  max-height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  pointer-events: none;
+  transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* OFF */
+.toggle-force[aria-checked="false"] > span {
+  left: 3px;
+}
+
+/* ON: button 46 - knob 20 - 3 right gap = 23 movement */
+.toggle-force[aria-checked="true"] > span {
+  left: 23px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROFILE PAGE — Mobile polish
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* Hero card mobile */
+  .profile-hero,
+  [class*="profile"] .bg-gradient-to-br.from-primary {
+    padding: 1rem !important;
+  }
+
+  /* Avatar shrink on mobile */
+  .profile-avatar,
+  [class*="profile"] img[alt] {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Name overflow protection */
+  h1, h2 {
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Email overflow protection */
+  a, p, span {
+    overflow-wrap: anywhere !important;
+  }
+
+  /* Stats cards tighter */
+  .grid-cols-2.gap-2 {
+    gap: 0.5rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAVBAR DROPDOWN — Extra Mobile Safety
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+
+  /* User menu dropdown container */
+  [data-user-menu] > div[class*="absolute"] {
+    max-width: calc(100vw - 1.5rem) !important;
+    right: 0.75rem !important;
+    left: auto !important;
+  }
+
+  /* Dropdown profile header */
+  [data-user-menu] .bg-gradient-to-br.from-primary {
+    padding: 0.75rem !important;
+  }
+
+  /* Avatar inside dropdown */
+  [data-user-menu] img {
+    width: 40px !important;
+    height: 40px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Name + email inside dropdown */
+  [data-user-menu] p {
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* Menu items inside dropdown */
+  [data-user-menu] a,
+  [data-user-menu] button {
+    font-size: 0.8125rem !important;
+    padding: 0.5rem 0.75rem !important;
+    white-space: normal !important;
+  }
+
+  /* Menu icons */
+  [data-user-menu] a svg,
+  [data-user-menu] button svg {
+    width: 0.85rem !important;
+    height: 0.85rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Chevron arrow — smaller */
+  [data-user-menu] a .-rotate-90 {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+  }
+}

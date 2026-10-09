@@ -41,29 +41,29 @@ export default function NotificationSoundPicker() {
 
   return (
     <div className="space-y-4">
-      {/* Toggle on/off */}
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() => update({ enabled: !prefs.enabled })}
-          className={`relative w-11 h-6 rounded-full transition-colors shrink-0 ${
-            prefs.enabled ? 'bg-primary' : 'bg-base-300'
-          }`}
-        >
-          <span
-            className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform ${
-              prefs.enabled ? 'translate-x-5' : 'translate-x-0'
-            }`}
-          />
-        </button>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-base-content flex items-center gap-2">
-            {prefs.enabled ? <FaVolumeUp size={12} /> : <FaVolumeMute size={12} />}
+      {/* Toggle on/off — uses row-item-force for consistent layout */}
+      <div className="row-item-force">
+        <div className="row-icon-force">
+          {prefs.enabled ? <FaVolumeUp size={20} /> : <FaVolumeMute size={20} />}
+        </div>
+        <div className="row-text-force">
+          <p className="row-label-force">
             {lang === 'bn' ? 'নোটিফিকেশন সাউন্ড' : lang === 'ar' ? 'صوت الإشعارات' : 'Notification Sound'}
           </p>
-          <p className="text-[11px] text-base-content/60 mt-0.5">
+          <p className="row-desc-force">
             {lang === 'bn' ? 'নতুন notification এলে শব্দ হবে' : lang === 'ar' ? 'تشغيل صوت عند وصول إشعار' : 'Play sound on new notifications'}
           </p>
+        </div>
+        <div className="row-right-force">
+          <button
+            type="button"
+            role="switch"
+            aria-checked={prefs.enabled}
+            onClick={() => update({ enabled: !prefs.enabled })}
+            className={`toggle-force ${prefs.enabled ? 'bg-primary' : 'bg-base-300'}`}
+          >
+            <span />
+          </button>
         </div>
       </div>
 

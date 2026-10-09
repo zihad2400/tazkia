@@ -269,13 +269,13 @@ export default function ProfilePage() {
       <Breadcrumb items={[{ label: 'Profile' }]} showBack={false} />
 
       {/* ═══ Profile Hero ═══ */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary text-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 mb-5 shadow-xl">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary text-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 mb-4 sm:mb-5 shadow-xl">
         <div className="absolute inset-0 opacity-15 pointer-events-none">
           <div className="hero-orb-1 absolute -top-10 -right-10 w-40 h-40 bg-gold rounded-full blur-3xl" />
           <div className="hero-orb-2 absolute -bottom-10 -left-10 w-40 h-40 bg-gold rounded-full blur-3xl" />
         </div>
 
-        <div className="relative flex items-center gap-4 flex-wrap sm:flex-nowrap">
+        <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5">
           {/* ═══ Avatar with upload ═══ */}
           <div className="relative group shrink-0">
             <div
@@ -335,13 +335,13 @@ export default function ProfilePage() {
               className="hidden"
             />
           </div>
-          <div className="flex-1 min-w-0">
-            <h1 className="text-xl sm:text-2xl font-bold truncate">{user.name}</h1>
+          <div className="flex-1 min-w-0 w-full text-center sm:text-left">
+            <h1 className="text-lg sm:text-2xl font-bold break-words leading-tight text-center sm:text-left">{user.name}</h1>
             <button
               onClick={handleCopyEmail}
-              className="flex items-center gap-1.5 text-xs sm:text-sm text-white/70 hover:text-gold transition-colors mt-0.5 group"
+              className="flex items-center justify-center sm:justify-start gap-1.5 text-[11px] sm:text-sm text-white/70 hover:text-gold transition-colors mt-1 group max-w-full"
             >
-              <span className="truncate">{user.email}</span>
+              <span className="break-all">{user.email}</span>
               <FaCopy size={9} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
             </button>
             {user.role && user.role !== 'user' && (
@@ -349,7 +349,7 @@ export default function ProfilePage() {
                 {user.role}
               </span>
             )}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3 text-[10px] sm:text-xs text-white/70">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 mt-2.5 text-[10px] sm:text-xs text-white/70">
               {activity?.joinedAt && (
                 <span className="flex items-center gap-1">
                   <FaCalendar size={9} />
@@ -366,7 +366,7 @@ export default function ProfilePage() {
           </div>
           <button
             onClick={() => setEditing((v) => !v)}
-            className={`self-start px-3 py-2 rounded-xl text-xs font-semibold transition-all active:scale-95 shrink-0 flex items-center gap-1.5 ${
+            className={`w-full sm:w-auto px-3 py-2 rounded-xl text-xs font-semibold transition-all active:scale-95 shrink-0 flex items-center justify-center gap-1.5 ${
               editing
                 ? 'bg-red-500 hover:bg-red-600 text-white'
                 : 'bg-white/10 hover:bg-white/20 border border-white/20 text-white'
@@ -379,7 +379,7 @@ export default function ProfilePage() {
       </div>
 
       {/* ═══ Stats Grid ═══ */}
-      <div className="grid grid-cols-4 gap-2 mb-5">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4 sm:mb-5">
         {statCards.map((stat, i) => {
           const Icon = stat.icon;
           return (
@@ -387,11 +387,11 @@ export default function ProfilePage() {
               key={i}
               className="bg-base-200 border border-base-300 rounded-xl p-2.5 text-center"
             >
-              <div className={`w-8 h-8 mx-auto rounded-lg bg-gradient-to-br ${stat.color} flex items-center justify-center text-white mb-1.5 shadow-sm`}>
-                <Icon size={12} />
+              <div className={`w-9 h-9 sm:w-8 sm:h-8 mx-auto rounded-lg bg-gradient-to-br ${stat.color} flex items-center justify-center text-white mb-1.5 shadow-sm`}>
+                <Icon size={14} />
               </div>
-              <p className="text-lg font-bold text-base-content leading-none">{stat.value}</p>
-              <p className="text-[9px] text-base-content/60 uppercase tracking-wider mt-1">
+              <p className="text-base sm:text-lg font-bold text-base-content leading-none">{stat.value}</p>
+              <p className="text-[10px] sm:text-[9px] text-base-content/60 uppercase tracking-wider mt-1">
                 {stat.label}
               </p>
             </div>
@@ -400,7 +400,7 @@ export default function ProfilePage() {
       </div>
 
       {/* ═══ Account Badges ═══ */}
-      <div className="flex flex-wrap gap-2 mb-5">
+      <div className="flex flex-wrap justify-center sm:justify-start gap-2 mb-4 sm:mb-5">
         {activity?.emailVerified && (
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[10px] sm:text-xs font-semibold">
             <FaCheck size={9} />
@@ -567,7 +567,7 @@ export default function ProfilePage() {
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white shadow-sm shrink-0">
             <FaChartLine size={14} />
           </div>
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 w-full text-center sm:text-left">
             <p className="text-sm font-semibold text-base-content">ড্যাশবোর্ড</p>
             <p className="text-[10px] text-base-content/50">সব অ্যাক্টিভিটি দেখুন</p>
           </div>
@@ -581,7 +581,7 @@ export default function ProfilePage() {
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-white shadow-sm shrink-0">
             <FaBookmark size={14} />
           </div>
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 w-full text-center sm:text-left">
             <p className="text-sm font-semibold text-base-content">বুকমার্ক</p>
             <p className="text-[10px] text-base-content/50">{stats.bookmarks}টি সেভ করা</p>
           </div>

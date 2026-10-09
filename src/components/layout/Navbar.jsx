@@ -222,7 +222,7 @@ export default function Navbar() {
 
                 {/* ═══ Notifications — Dynamic ═══ */}
                 {isAuthenticated && (
-                  <div className="hidden md:block">
+                  <div className="block">
                     <NotificationBell />
                   </div>
                 )}
@@ -272,15 +272,15 @@ export default function Navbar() {
 
                     {/* User Dropdown */}
                     {userMenuOpen && (
-                      <div className="absolute right-0 mt-2 w-72 bg-base-100 rounded-2xl shadow-2xl border border-base-300 overflow-hidden animate-fadeIn">
+                      <div className="absolute right-0 mt-2 w-[calc(100vw-1.5rem)] max-w-[300px] sm:w-72 sm:max-w-none bg-base-100 rounded-2xl shadow-2xl border border-base-300 overflow-hidden animate-fadeIn">
                         {/* User Header */}
-                        <div className="p-4 bg-gradient-to-br from-primary to-primary-dark text-white">
+                        <div className="p-3 sm:p-4 bg-gradient-to-br from-primary to-primary-dark text-white">
                           <div className="flex items-center gap-3">
                             {session.user.image ? (
                               <img
                                 src={session.user.image}
                                 alt={session.user.name}
-                                className="w-12 h-12 rounded-full object-cover ring-2 ring-gold/40"
+                                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover ring-2 ring-gold/40 shrink-0"
                               />
                             ) : (
                               <div className="w-12 h-12 rounded-full bg-gold text-white flex items-center justify-center font-bold text-lg ring-2 ring-white/20">
@@ -288,8 +288,8 @@ export default function Navbar() {
                               </div>
                             )}
                             <div className="flex-1 min-w-0">
-                              <p className="font-bold text-sm truncate">{session.user.name}</p>
-                              <p className="text-[11px] text-white/70 truncate">{userEmail}</p>
+                              <p className="font-bold text-[13px] sm:text-sm leading-tight break-words">{session.user.name}</p>
+                              <p className="text-[10px] sm:text-[11px] text-white/70 mt-0.5 break-all">{userEmail}</p>
                               {session.user.role && session.user.role !== 'user' && (
                                 <span className="inline-block mt-1 text-[9px] px-2 py-0.5 rounded-full bg-gold/30 text-white font-bold uppercase tracking-wider">
                                   {session.user.role}
@@ -304,7 +304,7 @@ export default function Navbar() {
                           <Link
                             href="/dashboard"
                             onClick={() => setUserMenuOpen(false)}
-                            className="flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg hover:bg-primary/10 text-base-content transition-colors"
+                            className="flex items-center gap-2.5 sm:gap-3 px-3 py-2 sm:py-2.5 text-[13px] sm:text-sm rounded-lg hover:bg-primary/10 text-base-content transition-colors"
                           >
                             <FaChartLine size={13} className="text-primary" />
                             <span className="flex-1">{t.dashboard}</span>
@@ -313,7 +313,7 @@ export default function Navbar() {
                           <Link
                             href="/profile"
                             onClick={() => setUserMenuOpen(false)}
-                            className="flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg hover:bg-primary/10 text-base-content transition-colors"
+                            className="flex items-center gap-2.5 sm:gap-3 px-3 py-2 sm:py-2.5 text-[13px] sm:text-sm rounded-lg hover:bg-primary/10 text-base-content transition-colors"
                           >
                             <FaUser size={13} className="text-primary" />
                             <span className="flex-1">{t.profile}</span>
@@ -322,7 +322,7 @@ export default function Navbar() {
                           <Link
                             href="/bookmarks"
                             onClick={() => setUserMenuOpen(false)}
-                            className="flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg hover:bg-primary/10 text-base-content transition-colors"
+                            className="flex items-center gap-2.5 sm:gap-3 px-3 py-2 sm:py-2.5 text-[13px] sm:text-sm rounded-lg hover:bg-primary/10 text-base-content transition-colors"
                           >
                             <FaBookmark size={13} className="text-primary" />
                             <span className="flex-1">{t.bookmarks}</span>
@@ -330,7 +330,7 @@ export default function Navbar() {
                           <Link
                             href="/settings"
                             onClick={() => setUserMenuOpen(false)}
-                            className="flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg hover:bg-primary/10 text-base-content transition-colors"
+                            className="flex items-center gap-2.5 sm:gap-3 px-3 py-2 sm:py-2.5 text-[13px] sm:text-sm rounded-lg hover:bg-primary/10 text-base-content transition-colors"
                           >
                             <FaCog size={13} className="text-primary" />
                             <span className="flex-1">{t.settings}</span>
@@ -342,7 +342,7 @@ export default function Navbar() {
                               <Link
                                 href="/admin"
                                 onClick={() => setUserMenuOpen(false)}
-                                className="flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg hover:bg-gold/10 text-gold font-semibold"
+                                className="flex items-center gap-2.5 sm:gap-3 px-3 py-2 sm:py-2.5 text-[13px] sm:text-sm rounded-lg hover:bg-gold/10 text-gold font-semibold"
                               >
                                 <FaCog size={13} />
                                 <span className="flex-1">{t.adminPanel}</span>
@@ -356,7 +356,7 @@ export default function Navbar() {
                               setUserMenuOpen(false);
                               signOut({ callbackUrl: '/' });
                             }}
-                            className="w-full flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                            className="w-full flex items-center gap-2.5 sm:gap-3 px-3 py-2 sm:py-2.5 text-[13px] sm:text-sm rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                           >
                             <FaSignOutAlt size={13} />
                             <span className="flex-1 text-left">{t.logout}</span>

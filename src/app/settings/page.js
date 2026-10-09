@@ -35,16 +35,12 @@ const Toggle = React.memo(function Toggle({ value, onChange }) {
   return (
     <button
       type="button"
+      role="switch"
+      aria-checked={value}
       onClick={() => onChange(!value)}
-      className={`relative w-10 h-5 sm:w-11 sm:h-6 rounded-full transition-colors shrink-0 ${
-        value ? 'bg-primary' : 'bg-base-300'
-      }`}
+      className={`toggle-force ${value ? 'bg-primary' : 'bg-base-300'}`}
     >
-      <span
-        className={`absolute top-0.5 left-0.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white shadow-md transition-transform ${
-          value ? 'translate-x-5' : 'translate-x-0'
-        }`}
-      />
+      <span />
     </button>
   );
 });
@@ -79,18 +75,17 @@ const Input = React.memo(function Input({ label, ...props }) {
 
 const Row = React.memo(function Row({ icon: Icon, label, desc, right }) {
   return (
-    <div className="flex items-center gap-2.5 sm:gap-3 py-3 sm:py-4 border-b border-base-300 last:border-0">
+    <div className="row-item-force">
       {Icon && (
-        <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-          <Icon size={12} className="sm:hidden" />
-          <Icon size={14} className="hidden sm:block" />
+        <div className="row-icon-force">
+          <Icon size={20} />
         </div>
       )}
-      <div className="flex-1 min-w-0">
-        <p className="text-xs sm:text-sm font-semibold text-base-content leading-tight">{label}</p>
-        {desc && <p className="text-[10px] sm:text-xs text-base-content/60 mt-0.5 leading-snug">{desc}</p>}
+      <div className="row-text-force">
+        <p className="row-label-force">{label}</p>
+        {desc && <p className="row-desc-force">{desc}</p>}
       </div>
-      <div className="shrink-0 ml-1">{right}</div>
+      <div className="row-right-force">{right}</div>
     </div>
   );
 });

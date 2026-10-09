@@ -258,41 +258,34 @@ export default function NotificationsPage() {
               <div
                 key={n.id}
                 onClick={() => handleItemClick(n)}
-                className={`group relative flex items-start gap-3 p-3.5 sm:p-4 cursor-pointer transition-colors border-b border-base-300 last:border-0 hover:bg-primary/[0.04] ${
-                  !n.read ? 'bg-primary/[0.02]' : ''
-                } ${isDeleting ? 'opacity-50' : ''}`}
+                className={`notif-item-force ${!n.read ? 'notif-unread-force' : ''} ${isDeleting ? 'opacity-50' : ''}`}
               >
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${cfg.color} flex items-center justify-center shrink-0`}>
-                  <Icon size={13} className="sm:hidden" />
-                  <Icon size={14} className="hidden sm:block" />
+                <div className={`notif-icon-force ${cfg.color}`}>
+                  <Icon size={18} />
                 </div>
 
-                <div className="flex-1 min-w-0 pr-8">
-                  <div className="flex items-start gap-2">
-                    <p className={`text-xs sm:text-sm text-base-content leading-tight flex-1 ${!n.read ? 'font-bold' : 'font-medium'}`}>
+                <div className="notif-content-force">
+                  <div className="notif-title-row-force">
+                    <p className={`notif-title-force ${!n.read ? 'font-bold' : ''}`}>
                       {n.title}
                     </p>
-                    {!n.read && (
-                      <span className="w-2 h-2 rounded-full bg-primary shrink-0 mt-1" />
-                    )}
+                    {!n.read && <span className="notif-dot-force" />}
                   </div>
                   {n.message && (
-                    <p className="text-[11px] sm:text-xs text-base-content/60 mt-1 leading-snug line-clamp-2">
+                    <p className="notif-message-force">
                       {n.message}
                     </p>
                   )}
-                  <p className="text-[10px] text-base-content/40 mt-1.5">
+                  <p className="notif-time-force">
                     {timeAgo(n.createdAt)}
                   </p>
                 </div>
 
-                {/* Delete button — appears on hover / always on mobile */}
                 <button
                   onClick={(e) => handleDelete(e, n)}
                   disabled={isDeleting}
-                  className="absolute right-3 top-3 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100 transition-opacity p-2 rounded-lg hover:bg-red-500/10 text-base-content/40 hover:text-red-600 disabled:opacity-50"
+                  className="notif-delete-force"
                   aria-label="Delete"
-                  title={lang === 'bn' ? 'মুছুন' : lang === 'ar' ? 'حذف' : 'Delete'}
                 >
                   {isDeleting ? <FaSpinner className="animate-spin" size={12} /> : <FaTrash size={12} />}
                 </button>
