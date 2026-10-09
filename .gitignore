@@ -55,3 +55,12 @@ next-env.d.ts
 
 # OS
 .DS_Store
+
+# ═══ Backup files (prevent git tracking) ═══
+*.backup
+*.bak
+*.old
+*.orig
+*.save
+*.emergency_backup
+*.session-backup
