@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import {
   FaBell, FaClock, FaQuran, FaBookOpen, FaHands, FaTrophy,
@@ -27,9 +28,13 @@ export default function NotificationBell() {
   const [unreadCount, setUnreadCount] = useState(0);
   const [markingAll, setMarkingAll] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
+  const [mounted, setMounted] = useState(false);
+  const buttonRef = useRef(null);
   const dropdownRef = useRef(null);
   const prevUnreadRef = useRef(null);
   const soundEnabledRef = useRef(true);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const fetchNotifications = useCallback(async () => {
     try {
@@ -38,7 +43,6 @@ export default function NotificationBell() {
       const data = await res.json();
       const newUnread = data.unreadCount || 0;
 
-      // 🔔 Play sound only when unread count INCREASES (new notification)
       if (
         prevUnreadRef.current !== null &&
         newUnread > prevUnreadRef.current &&
@@ -57,23 +61,44 @@ export default function NotificationBell() {
     }
   }, []);
 
-  // Initial + polling
   useEffect(() => {
     fetchNotifications();
     const iv = setInterval(fetchNotifications, 30000);
     return () => clearInterval(iv);
   }, [fetchNotifications]);
 
-  // Click outside
   useEffect(() => {
     if (!open) return;
     const handler = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      if (
+        dropdownRef.current && !dropdownRef.current.contains(e.target) &&
+        buttonRef.current && !buttonRef.current.contains(e.target)
+      ) {
         setOpen(false);
       }
     };
     document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    document.addEventListener('touchstart', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('touchstart', handler);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (open && typeof window !== 'undefined' && window.innerWidth < 640) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onEsc = (e) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', onEsc);
+    return () => window.removeEventListener('keydown', onEsc);
   }, [open]);
 
   const handleMarkAllRead = async (e) => {
@@ -126,9 +151,142 @@ export default function NotificationBell() {
     return new Date(date).toLocaleDateString();
   };
 
+  const dropdownContent = (
+    <div
+      ref={dropdownRef}
+      className="
+        fixed sm:absolute
+        left-1/2 sm:left-auto
+        -translate-x-1/2 sm:translate-x-0
+        sm:right-0
+        top-16 sm:top-full
+        sm:mt-2
+        w-[calc(100vw-1rem)] sm:w-96
+        max-w-sm sm:max-w-none
+        max-h-[75vh] sm:max-h-[28rem]
+        bg-base-100
+        rounded-2xl
+        shadow-2xl
+        border border-base-300
+        overflow-hidden
+        z-[9999]
+        flex flex-col
+      "
+    >
+      <div className="p-3 border-b border-base-300 flex items-center justify-between shrink-0">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="font-bold text-sm text-base-content truncate">
+            {t.notifications}
+          </span>
+          {unreadCount > 0 && (
+            <span className="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-bold shrink-0">
+              {unreadCount}
+            </span>
+          )}
+        </div>
+        {unreadCount > 0 && (
+          <button
+            onClick={handleMarkAllRead}
+            disabled={markingAll}
+            className="text-[10px] text-primary hover:underline font-semibold flex items-center gap-1 disabled:opacity-50 shrink-0"
+          >
+            {markingAll ? <FaSpinner size={9} className="animate-spin" /> : <FaCheck size={9} />}
+            {lang === 'bn' ? 'সব পড়া' : lang === 'ar' ? 'تحديد الكل' : 'Mark all'}
+          </button>
+        )}
+      </div>
+
+      <div className="flex-1 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
+        {loading ? (
+          <div className="p-8 flex flex-col items-center justify-center text-base-content/50">
+            <FaSpinner className="animate-spin mb-2" size={18} />
+            <p className="text-xs">{t.loading}</p>
+          </div>
+        ) : notifications.length === 0 ? (
+          <div className="p-8 text-center">
+            <div className="w-12 h-12 mx-auto rounded-full bg-base-200 flex items-center justify-center mb-3">
+              <FaBell size={18} className="text-base-content/40" />
+            </div>
+            <p className="text-sm font-semibold text-base-content/70">
+              {lang === 'bn' ? 'কোনো নোটিফিকেশন নেই' : lang === 'ar' ? 'لا توجد إشعارات' : 'No notifications'}
+            </p>
+            <p className="text-[11px] text-base-content/40 mt-1">
+              {lang === 'bn' ? 'নতুন আপডেট এলে এখানে দেখাবে' : lang === 'ar' ? 'ستظهر التحديثات هنا' : "You're all caught up"}
+            </p>
+          </div>
+        ) : (
+          notifications.map((n) => {
+            const cfg = TYPE_CONFIG[n.type] || TYPE_CONFIG.system;
+            const Icon = cfg.icon;
+            const isDeleting = deletingId === n.id;
+            const content = (
+              <div
+                className={`group relative flex items-start gap-3 p-3 hover:bg-primary/5 border-b border-base-300 last:border-0 cursor-pointer transition-colors ${
+                  !n.read ? 'bg-primary/[0.04]' : ''
+                } ${isDeleting ? 'opacity-50' : ''}`}
+              >
+                <div className={`w-9 h-9 rounded-lg ${cfg.color} flex items-center justify-center shrink-0`}>
+                  <Icon size={13} />
+                </div>
+                <div className="flex-1 min-w-0 pr-7">
+                  <p className={`text-xs sm:text-sm ${!n.read ? 'font-semibold' : 'font-medium'} text-base-content leading-tight`}>
+                    {n.title}
+                  </p>
+                  {n.message && (
+                    <p className="text-[11px] text-base-content/60 mt-0.5 line-clamp-2 leading-snug">
+                      {n.message}
+                    </p>
+                  )}
+                  <p className="text-[10px] text-base-content/40 mt-1">
+                    {timeAgo(n.createdAt)}
+                  </p>
+                </div>
+                {!n.read && (
+                  <span className="w-2 h-2 rounded-full bg-primary shrink-0 mt-1.5" />
+                )}
+                <button
+                  onClick={(e) => handleDelete(e, n)}
+                  disabled={isDeleting}
+                  className="absolute right-2 top-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-1.5 rounded-lg hover:bg-red-500/10 text-base-content/40 hover:text-red-600 disabled:opacity-50"
+                  aria-label="Delete"
+                  title="Delete"
+                >
+                  {isDeleting ? <FaSpinner className="animate-spin" size={10} /> : <FaTrash size={10} />}
+                </button>
+              </div>
+            );
+
+            return n.link ? (
+              <Link key={n.id} href={n.link} onClick={() => handleItemClick(n)}>
+                {content}
+              </Link>
+            ) : (
+              <div key={n.id} onClick={() => handleItemClick(n)}>
+                {content}
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      {notifications.length > 0 && (
+        <div className="p-2 border-t border-base-300 bg-base-200/50 shrink-0">
+          <Link
+            href="/notifications"
+            onClick={() => setOpen(false)}
+            className="block w-full text-center py-2 text-xs font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors"
+          >
+            {lang === 'bn' ? 'সব নোটিফিকেশন দেখুন' : lang === 'ar' ? 'عرض كل الإشعارات' : 'View all notifications'}
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative">
       <button
+        ref={buttonRef}
         onClick={() => setOpen((v) => !v)}
         className="relative p-2 sm:p-2.5 rounded-lg hover:bg-primary/10 text-base-content transition-all active:scale-95"
         aria-label={t.notifications}
@@ -143,122 +301,8 @@ export default function NotificationBell() {
 
       {open && (
         <>
-          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-
-          {/* Dropdown — Mobile: near-full width, Desktop: 96 (384px) */}
-          <div className="absolute right-0 mt-2 w-[calc(100vw-24px)] max-w-sm sm:w-96 z-50 bg-base-100 rounded-2xl shadow-2xl border border-base-300 overflow-hidden animate-fadeIn">
-
-            {/* Header */}
-            <div className="p-3 border-b border-base-300 flex items-center justify-between">
-              <div className="flex items-center gap-2 min-w-0">
-                <span className="font-bold text-sm text-base-content truncate">
-                  {t.notifications}
-                </span>
-                {unreadCount > 0 && (
-                  <span className="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-bold shrink-0">
-                    {unreadCount}
-                  </span>
-                )}
-              </div>
-              {unreadCount > 0 && (
-                <button
-                  onClick={handleMarkAllRead}
-                  disabled={markingAll}
-                  className="text-[10px] text-primary hover:underline font-semibold flex items-center gap-1 disabled:opacity-50 shrink-0"
-                >
-                  {markingAll ? <FaSpinner size={9} className="animate-spin" /> : <FaCheck size={9} />}
-                  {lang === 'bn' ? 'সব পড়া' : lang === 'ar' ? 'تحديد الكل' : 'Mark all'}
-                </button>
-              )}
-            </div>
-
-            {/* Body */}
-            <div className="max-h-[60vh] sm:max-h-96 overflow-y-auto">
-              {loading ? (
-                <div className="p-8 flex flex-col items-center justify-center text-base-content/50">
-                  <FaSpinner className="animate-spin mb-2" size={18} />
-                  <p className="text-xs">{t.loading}</p>
-                </div>
-              ) : notifications.length === 0 ? (
-                <div className="p-8 text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-base-200 flex items-center justify-center mb-3">
-                    <FaBell size={18} className="text-base-content/40" />
-                  </div>
-                  <p className="text-sm font-semibold text-base-content/70">
-                    {lang === 'bn' ? 'কোনো নোটিফিকেশন নেই' : lang === 'ar' ? 'لا توجد إشعارات' : 'No notifications'}
-                  </p>
-                  <p className="text-[11px] text-base-content/40 mt-1">
-                    {lang === 'bn' ? 'নতুন আপডেট এলে এখানে দেখাবে' : lang === 'ar' ? 'ستظهر التحديثات هنا' : "You're all caught up"}
-                  </p>
-                </div>
-              ) : (
-                notifications.map((n) => {
-                  const cfg = TYPE_CONFIG[n.type] || TYPE_CONFIG.system;
-                  const Icon = cfg.icon;
-                  const isDeleting = deletingId === n.id;
-                  const content = (
-                    <div
-                      className={`group relative flex items-start gap-3 p-3 hover:bg-primary/5 border-b border-base-300 last:border-0 cursor-pointer transition-colors ${
-                        !n.read ? 'bg-primary/[0.04]' : ''
-                      } ${isDeleting ? 'opacity-50' : ''}`}
-                    >
-                      <div className={`w-9 h-9 rounded-lg ${cfg.color} flex items-center justify-center shrink-0`}>
-                        <Icon size={13} />
-                      </div>
-                      <div className="flex-1 min-w-0 pr-7">
-                        <p className={`text-xs sm:text-sm ${!n.read ? 'font-semibold' : 'font-medium'} text-base-content leading-tight`}>
-                          {n.title}
-                        </p>
-                        {n.message && (
-                          <p className="text-[11px] text-base-content/60 mt-0.5 line-clamp-2 leading-snug">
-                            {n.message}
-                          </p>
-                        )}
-                        <p className="text-[10px] text-base-content/40 mt-1">
-                          {timeAgo(n.createdAt)}
-                        </p>
-                      </div>
-                      {!n.read && (
-                        <span className="w-2 h-2 rounded-full bg-primary shrink-0 mt-1.5" />
-                      )}
-                      <button
-                        onClick={(e) => handleDelete(e, n)}
-                        disabled={isDeleting}
-                        className="absolute right-2 top-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-1.5 rounded-lg hover:bg-red-500/10 text-base-content/40 hover:text-red-600 disabled:opacity-50"
-                        aria-label="Delete"
-                        title="Delete"
-                      >
-                        {isDeleting ? <FaSpinner className="animate-spin" size={10} /> : <FaTrash size={10} />}
-                      </button>
-                    </div>
-                  );
-
-                  return n.link ? (
-                    <Link key={n.id} href={n.link} onClick={() => handleItemClick(n)}>
-                      {content}
-                    </Link>
-                  ) : (
-                    <div key={n.id} onClick={() => handleItemClick(n)}>
-                      {content}
-                    </div>
-                  );
-                })
-              )}
-            </div>
-
-            {/* Footer */}
-            {notifications.length > 0 && (
-              <div className="p-2 border-t border-base-300 bg-base-200/50">
-                <Link
-                  href="/notifications"
-                  onClick={() => setOpen(false)}
-                  className="block w-full text-center py-2 text-xs font-semibold text-primary hover:bg-primary/5 rounded-lg transition-colors"
-                >
-                  {lang === 'bn' ? 'সব নোটিফিকেশন দেখুন' : lang === 'ar' ? 'عرض كل الإشعارات' : 'View all notifications'}
-                </Link>
-              </div>
-            )}
-          </div>
+          <div className="fixed inset-0 bg-black/40 z-[9998] sm:hidden" onClick={() => setOpen(false)} />
+          {mounted && createPortal(dropdownContent, document.body)}
         </>
       )}
     </div>

@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useTheme } from '@/components/providers/ThemeProvider';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import NotificationBell from '@/components/ui/NotificationBell';
@@ -34,6 +35,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const userButtonRef = useRef(null);
+  const userMenuRef = useRef(null);
 
   const isLoading = status === 'loading';
   const isAuthenticated = status === 'authenticated' && session?.user;
@@ -46,6 +50,9 @@ export default function Navbar() {
     { key: 'prayer', href: '/prayer', icon: FaClock },
     { key: 'knowledge', href: '/articles', icon: FaBookOpen },
   ];
+
+  // Mounted flag for Portal
+  useEffect(() => { setMounted(true); }, []);
 
   // Scroll listener
   useEffect(() => {
@@ -73,24 +80,39 @@ export default function Navbar() {
         setMobileOpen(false);
         setUserMenuOpen(false);
         setLangOpen(false);
-        setNotifOpen(false);
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // Click outside to close user menu
+  // Click outside to close user menu (uses refs — works with Portal)
   useEffect(() => {
+    if (!userMenuOpen) return;
     const handleClick = (e) => {
-      if (userMenuOpen && !e.target.closest('[data-user-menu]')) {
+      if (
+        userMenuRef.current && !userMenuRef.current.contains(e.target) &&
+        userButtonRef.current && !userButtonRef.current.contains(e.target)
+      ) {
         setUserMenuOpen(false);
       }
     };
-    if (userMenuOpen) {
-      document.addEventListener('mousedown', handleClick);
-      return () => document.removeEventListener('mousedown', handleClick);
+    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('touchstart', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('touchstart', handleClick);
+    };
+  }, [userMenuOpen]);
+
+  // Lock body scroll on mobile when user menu is open
+  useEffect(() => {
+    if (userMenuOpen && typeof window !== 'undefined' && window.innerWidth < 640) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+    return () => { document.body.style.overflow = ''; };
   }, [userMenuOpen]);
 
   // Lock body scroll when drawer opens
@@ -247,6 +269,7 @@ export default function Navbar() {
                   // Authenticated — User Avatar with dropdown
                   <div className="relative" data-user-menu>
                     <button
+                      ref={userButtonRef}
                       onClick={() => setUserMenuOpen((v) => !v)}
                       className="flex items-center gap-1.5 sm:gap-2 pl-0.5 pr-1.5 sm:pr-2.5 py-1 rounded-full hover:bg-primary/10 transition-all active:scale-95 border border-base-300 hover:border-primary/40"
                     >
@@ -270,10 +293,40 @@ export default function Navbar() {
                       />
                     </button>
 
-                    {/* User Dropdown */}
+                    {/* User Dropdown — Portal + Fixed on mobile */}
                     {userMenuOpen && (
-                      <div className="absolute right-0 mt-2 w-[calc(100vw-1.5rem)] max-w-[300px] sm:w-72 sm:max-w-none bg-base-100 rounded-2xl shadow-2xl border border-base-300 overflow-hidden animate-fadeIn">
-                        {/* User Header */}
+                      <>
+                        {/* Mobile backdrop */}
+                        <div
+                          className="fixed inset-0 bg-black/40 z-[9998] sm:hidden"
+                          onClick={() => setUserMenuOpen(false)}
+                        />
+
+                        {mounted && createPortal(
+                          <div
+                            ref={userMenuRef}
+                            className="
+                              fixed sm:absolute
+                              left-1/2 sm:left-auto
+                              -translate-x-1/2 sm:translate-x-0
+                              sm:right-0
+                              top-16 sm:top-full
+                              sm:mt-2
+                              w-[calc(100vw-1rem)] sm:w-72
+                              max-w-[320px] sm:max-w-none
+                              max-h-[80vh]
+                              overflow-y-auto
+                              overscroll-contain
+                              bg-base-100
+                              rounded-2xl
+                              shadow-2xl
+                              border border-base-300
+                              animate-fadeIn
+                              z-[9999]
+                            "
+                            style={{ WebkitOverflowScrolling: 'touch' }}
+                          >
+                            {/* User Header */}
                         <div className="p-3 sm:p-4 bg-gradient-to-br from-primary to-primary-dark text-white">
                           <div className="flex items-center gap-3">
                             {session.user.image ? (
@@ -362,7 +415,10 @@ export default function Navbar() {
                             <span className="flex-1 text-left">{t.logout}</span>
                           </button>
                         </div>
-                      </div>
+                          </div>,
+                          document.body
+                        )}
+                      </>
                     )}
                   </div>
                 ) : (

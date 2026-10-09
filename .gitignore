@@ -64,3 +64,4 @@ next-env.d.ts
 *.save
 *.emergency_backup
 *.session-backup
+.env*

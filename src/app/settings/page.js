@@ -632,20 +632,20 @@ export default function SettingsPage() {
         </div>
 
         {/* ═══ Bottom Actions ═══ */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 sm:pt-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 sm:pt-4">
           <Link
             href="/"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 bg-base-200 hover:bg-base-300 border border-base-300 text-base-content font-semibold rounded-xl transition-all active:scale-[0.98] text-sm"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-base-200 hover:bg-base-300 border border-base-300 text-base-content font-semibold rounded-xl transition-all active:scale-[0.98] text-sm whitespace-nowrap min-w-0"
           >
-            <FaHome size={13} />
-            {t.backHome}
+            <FaHome size={13} className="shrink-0" />
+            <span className="whitespace-nowrap truncate">{t.backHome}</span>
           </Link>
           <Link
             href="/dashboard"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary font-semibold rounded-xl transition-all active:scale-[0.98] text-sm"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary font-semibold rounded-xl transition-all active:scale-[0.98] text-sm whitespace-nowrap min-w-0"
           >
-            <FaChartLine size={13} />
-            {t.dashboard}
+            <FaChartLine size={13} className="shrink-0" />
+            <span className="whitespace-nowrap truncate">{t.dashboard}</span>
           </Link>
         </div>
       </div>
